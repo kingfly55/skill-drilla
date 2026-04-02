@@ -13,6 +13,7 @@ from skill_drilla.semantic.base import SemanticEvidenceSlice, SemanticMethod, Se
 _DEFAULT_BASE_URL = os.environ.get("SKILLDRILLA_LLM_BASE_URL", "https://api.openai.com/v1")
 _DEFAULT_API_KEY = os.environ.get("SKILLDRILLA_LLM_API_KEY", "")
 _DEFAULT_MODEL = os.environ.get("SKILLDRILLA_LLM_MODEL", "gpt-4o-mini")
+_DEFAULT_MODEL_HEAVY = os.environ.get("SKILLDRILLA_LLM_MODEL_HEAVY", os.environ.get("SKILLDRILLA_LLM_MODEL", "gpt-4o"))
 
 
 class SkillMiningMethod(SemanticMethod):
@@ -39,6 +40,7 @@ class SkillMiningMethod(SemanticMethod):
         "max_skills": 10,
         "max_turns_per_skill": 3,
         "max_episode_turns": 5,
+        "model_heavy": _DEFAULT_MODEL_HEAVY,
     }
 
     def build_run(

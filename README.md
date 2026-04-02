@@ -55,7 +55,14 @@ Edit `.env`:
 ```bash
 SKILLDRILLA_LLM_BASE_URL=https://api.openai.com/v1   # or your local endpoint
 SKILLDRILLA_LLM_API_KEY=sk-your-key-here
-SKILLDRILLA_LLM_MODEL=gpt-4o-mini                     # or any model your endpoint serves
+
+# Fast model — used for cluster labelling, arc classification, nuance extraction
+# Needs to be cheap/fast since it gets called 15-25 times
+SKILLDRILLA_LLM_MODEL=gpt-4o-mini
+
+# Heavy model — used for final skill file generation
+# Called once per skill, can take 5-20 minutes per call, but produces much better output
+SKILLDRILLA_LLM_MODEL_HEAVY=gpt-4o
 ```
 
 ### Verify your transcripts exist
@@ -173,12 +180,13 @@ After running clustering + skill mining:
 
 ## Environment variables
 
-| Variable | Default | Required for |
+| Variable | Default | Purpose |
 |---|---|---|
-| `SKILLDRILLA_LLM_BASE_URL` | `https://api.openai.com/v1` | LLM skill mining |
-| `SKILLDRILLA_LLM_API_KEY` | _(empty)_ | LLM skill mining |
-| `SKILLDRILLA_LLM_MODEL` | `gpt-4o-mini` | LLM skill mining |
-| `SKILLDRILLA_EMBEDDING_MODEL` | `all-MiniLM-L6-v2` | Clustering (auto-downloads) |
+| `SKILLDRILLA_LLM_BASE_URL` | `https://api.openai.com/v1` | OpenAI-compatible endpoint (any provider) |
+| `SKILLDRILLA_LLM_API_KEY` | _(empty)_ | API key for the endpoint |
+| `SKILLDRILLA_LLM_MODEL` | `gpt-4o-mini` | Fast model for labelling, classification, extraction (15-25 calls) |
+| `SKILLDRILLA_LLM_MODEL_HEAVY` | `gpt-4o` | Heavy model for skill file generation (1 call per skill, 5-20 min each) |
+| `SKILLDRILLA_EMBEDDING_MODEL` | `all-MiniLM-L6-v2` | Sentence-transformer for clustering (auto-downloads) |
 
 ## Available CLI commands
 

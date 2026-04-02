@@ -84,10 +84,11 @@ The stable pipeline commands (in execution order):
 ## Environment variables (for LLM features)
 
 ```
-SKILLDRILLA_LLM_BASE_URL    # OpenAI-compatible endpoint (default: https://api.openai.com/v1)
-SKILLDRILLA_LLM_API_KEY     # API key for skill mining
-SKILLDRILLA_LLM_MODEL       # Model name (default: gpt-4o-mini)
-SKILLDRILLA_EMBEDDING_MODEL  # Sentence-transformer model (default: all-MiniLM-L6-v2)
+SKILLDRILLA_LLM_BASE_URL      # OpenAI-compatible endpoint (default: https://api.openai.com/v1)
+SKILLDRILLA_LLM_API_KEY       # API key for the endpoint
+SKILLDRILLA_LLM_MODEL         # Fast model for labelling/classification (default: gpt-4o-mini)
+SKILLDRILLA_LLM_MODEL_HEAVY   # Heavy model for skill file generation (default: gpt-4o)
+SKILLDRILLA_EMBEDDING_MODEL   # Sentence-transformer model (default: all-MiniLM-L6-v2)
 ```
 
 ## Adding a new detector
