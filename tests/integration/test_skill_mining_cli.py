@@ -5,7 +5,7 @@ from __future__ import annotations
 import json
 from pathlib import Path
 
-from chatanalysis.cli import main
+from skill_drilla.cli import main
 
 
 # ---------------------------------------------------------------------------

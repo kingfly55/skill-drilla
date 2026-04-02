@@ -18,7 +18,7 @@ def test_build_view_cli_generates_user_root_only_artifacts(tmp_path: Path):
         [
             sys.executable,
             "-m",
-            "chatanalysis.cli",
+            "skill_drilla.cli",
             "build-view",
             "--evidence",
             str(EVIDENCE_FIXTURE),
@@ -50,7 +50,7 @@ def test_build_view_cli_debug_view_includes_excluded_and_ambiguous(tmp_path: Pat
         [
             sys.executable,
             "-m",
-            "chatanalysis.cli",
+            "skill_drilla.cli",
             "build-view",
             "--evidence",
             str(EVIDENCE_FIXTURE),
@@ -85,7 +85,7 @@ def test_build_view_smoke_artifacts_have_required_summary_fields(tmp_path: Path)
         [
             sys.executable,
             "-m",
-            "chatanalysis.cli",
+            "skill_drilla.cli",
             "build-view",
             "--evidence",
             str(SMOKE_EVIDENCE),

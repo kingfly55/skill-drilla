@@ -15,7 +15,7 @@ def test_semantic_run_requires_explicit_enable_flag(tmp_path: Path):
         [
             sys.executable,
             "-m",
-            "chatanalysis.cli",
+            "skill_drilla.cli",
             "semantic-run",
             "--view-dir",
             str(VIEW_DIR),
@@ -43,7 +43,7 @@ def test_semantic_run_writes_non_canonical_artifact_and_report_still_works(tmp_p
         [
             sys.executable,
             "-m",
-            "chatanalysis.cli",
+            "skill_drilla.cli",
             "semantic-run",
             "--view-dir",
             str(VIEW_DIR),
@@ -66,7 +66,7 @@ def test_semantic_run_writes_non_canonical_artifact_and_report_still_works(tmp_p
         [
             sys.executable,
             "-m",
-            "chatanalysis.cli",
+            "skill_drilla.cli",
             "report",
             "--detector-run",
             str(REPO_ROOT / "artifacts" / "chat-analysis" / "detectors" / "repeated_instructions" / "detector_run.json"),

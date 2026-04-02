@@ -21,7 +21,7 @@ The codebase is a **local-first CLI pipeline** that turns exported Claude Code c
 
 | Path | Lines/Size | Purpose | Action needed |
 |---|---|---|---|
-| `src/chatanalysis/` | 5,700 lines, 63 files | Full analysis pipeline | Ship as-is |
+| `src/skill_drilla/` | 5,700 lines, 63 files | Full analysis pipeline | Ship as-is |
 | `schemas/` | 17 JSON schemas | Artifact validation | Ship as-is |
 | `tests/` | 39 test files | Unit, integration, regression, perf | Fix hardcoded paths |
 | `configs/chat-analysis.default.yaml` | 680 bytes | Default configuration template | Genericize paths |
@@ -99,7 +99,7 @@ artifacts/
 
 Every integration test and several unit tests contain:
 ```python
-REPO_ROOT = Path("/path/to/chatanalysis")  # was hardcoded
+REPO_ROOT = Path("/path/to/skill-drilla")  # was hardcoded
 ```
 
 **Fix:** Replace with a dynamic resolution pattern:
@@ -145,20 +145,20 @@ _DEFAULT_MODEL = "openai:gpt-4o-mini"
 **Fix:** Read from environment variables with sensible defaults:
 
 ```python
-_DEFAULT_BASE_URL = os.environ.get("CHATANALYSIS_LLM_BASE_URL", "https://api.openai.com/v1")
-_DEFAULT_API_KEY = os.environ.get("CHATANALYSIS_LLM_API_KEY", "")
-_DEFAULT_MODEL = os.environ.get("CHATANALYSIS_LLM_MODEL", "gpt-4o-mini")
+_DEFAULT_BASE_URL = os.environ.get("SKILLDRILLA_LLM_BASE_URL", "https://api.openai.com/v1")
+_DEFAULT_API_KEY = os.environ.get("SKILLDRILLA_LLM_API_KEY", "")
+_DEFAULT_MODEL = os.environ.get("SKILLDRILLA_LLM_MODEL", "gpt-4o-mini")
 ```
 
 And document in a `.env.example`:
 ```bash
 # LLM endpoint for skill-mining (any OpenAI-compatible API)
-CHATANALYSIS_LLM_BASE_URL=https://api.openai.com/v1
-CHATANALYSIS_LLM_API_KEY=sk-your-key-here
-CHATANALYSIS_LLM_MODEL=gpt-4o-mini
+SKILLDRILLA_LLM_BASE_URL=https://api.openai.com/v1
+SKILLDRILLA_LLM_API_KEY=sk-your-key-here
+SKILLDRILLA_LLM_MODEL=gpt-4o-mini
 
 # Embedding model for clustering (optional — uses all-MiniLM-L6-v2 by default)
-CHATANALYSIS_EMBEDDING_MODEL=all-MiniLM-L6-v2
+SKILLDRILLA_EMBEDDING_MODEL=all-MiniLM-L6-v2
 ```
 
 ### 3. Embedding model configurability — MEDIUM PRIORITY
@@ -199,7 +199,7 @@ Current issues:
 Suggested update:
 ```toml
 [project]
-name = "chatanalysis"
+name = "skill-drilla"
 version = "0.1.0"
 description = "Analyze Claude Code chat transcripts to surface recurring patterns, extract skills, and mine workflow episodes"
 readme = "README.md"
@@ -219,11 +219,11 @@ skill-mining = [
   "pydantic-ai>=1.0",
 ]
 all = [
-  "chatanalysis[semantic-local,skill-mining]",
+  "skill-drilla[semantic-local,skill-mining]",
 ]
 
 [project.urls]
-Repository = "https://github.com/your-username/chatanalysis"
+Repository = "https://github.com/your-username/skill-drilla"
 ```
 
 ### 6. README.md — MISSING (HIGH PRIORITY)

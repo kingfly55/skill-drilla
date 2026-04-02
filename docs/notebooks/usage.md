@@ -6,7 +6,7 @@ Notebook workflows in this repository are consumers of canonical artifacts. They
 
 ## Canonical inputs
 
-Use notebook helpers from `chatanalysis.notebooks` to read repository-produced artifacts:
+Use notebook helpers from `skill-drilla.notebooks` to read repository-produced artifacts:
 
 - discovery inventory via `load_inventory(...)`
 - parse diagnostics via `load_parse_diagnostics(...)`
@@ -49,13 +49,13 @@ When they do, they should:
 
 ## Export workflow
 
-Use `chatanalysis.cli notebook-export` to collect canonical artifacts into a notebook-friendly bundle. The export copies existing files and writes `export_manifest.json`; it does not generate new semantic outputs.
+Use `skill-drilla.cli notebook-export` to collect canonical artifacts into a notebook-friendly bundle. The export copies existing files and writes `export_manifest.json`; it does not generate new semantic outputs.
 
 Example:
 
 ```bash
 PYTHONPATH="src" \
-python -m chatanalysis.cli notebook-export \
+python -m skill-drilla.cli notebook-export \
   --evidence "artifacts/chat-analysis/normalize/smoke/evidence.jsonl" \
   --detector-run "artifacts/chat-analysis/detectors/repeated_instructions/detector_run.json" \
   --output-dir "artifacts/chat-analysis/notebooks/export-smoke"
@@ -67,7 +67,7 @@ Notebook verification is programmatic:
 
 - assert `.ipynb` files exist
 - parse notebook JSON as structured documents
-- confirm starter code imports `chatanalysis.notebooks.loaders`
+- confirm starter code imports `skill-drilla.notebooks.loaders`
 - confirm starter code references canonical `artifacts/chat-analysis/` paths
 - validate exported manifests and copied artifact files with tests and CLI checks
 

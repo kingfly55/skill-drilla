@@ -1,10 +1,10 @@
 import json
 from pathlib import Path
 
-from chatanalysis.discovery.inventory import InventoryRecord
-from chatanalysis.normalize.transform import normalize_event
-from chatanalysis.parse.jsonl_stream import stream_jsonl_records
-from chatanalysis.parse.raw_events import raw_event_from_stream_record
+from skill_drilla.discovery.inventory import InventoryRecord
+from skill_drilla.normalize.transform import normalize_event
+from skill_drilla.parse.jsonl_stream import stream_jsonl_records
+from skill_drilla.parse.raw_events import raw_event_from_stream_record
 
 
 FIXTURE_INVENTORY = InventoryRecord(

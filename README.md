@@ -1,8 +1,8 @@
-# ChatAnalysis
+# Skill Drilla
 
 Analyze your Claude Code chat transcripts to surface recurring patterns, extract episode workflows, and mine reusable skills.
 
-ChatAnalysis turns exported Claude Code history into structured, traceable analysis. It finds what instructions you repeat, what workflows you follow, and what patterns could become automated skills — without sending your data anywhere.
+Skill Drilla turns exported Claude Code history into structured, traceable analysis. It finds what instructions you repeat, what workflows you follow, and what patterns could become automated skills — without sending your data anywhere.
 
 ## What it does
 
@@ -18,8 +18,8 @@ ChatAnalysis turns exported Claude Code history into structured, traceable analy
 ## Quick start
 
 ```bash
-git clone https://github.com/kingfly55/chatanalysis.git
-cd chatanalysis
+git clone https://github.com/kingfly55/skill-drilla.git
+cd skill-drilla
 pip install -e '.[all]'    # or just: pip install -e .  (zero-dependency base)
 ./run-analysis.sh           # auto-detects ~/.claude/projects/ and runs everything
 ```
@@ -65,36 +65,36 @@ If your transcripts aren't at `~/.claude/projects/`:
 <summary>Click to expand step-by-step commands</summary>
 
 ```bash
-chatanalysis discover --config configs/chat-analysis.default.yaml \
+skill-drilla discover --config configs/chat-analysis.default.yaml \
   --projects-root projects --output-dir artifacts/chat-analysis/discovery
 
-chatanalysis parse --inventory artifacts/chat-analysis/discovery/session_inventory.jsonl \
+skill-drilla parse --inventory artifacts/chat-analysis/discovery/session_inventory.jsonl \
   --output-dir artifacts/chat-analysis/parse
 
-chatanalysis normalize \
+skill-drilla normalize \
   --inventory artifacts/chat-analysis/discovery/session_inventory.jsonl \
   --raw-events artifacts/chat-analysis/parse/raw_events.jsonl \
   --output-dir artifacts/chat-analysis/normalize
 
-chatanalysis build-view \
+skill-drilla build-view \
   --evidence artifacts/chat-analysis/normalize/evidence.jsonl \
   --view user_nl_root_only \
   --output-dir artifacts/chat-analysis/views/user_nl_root_only
 
-chatanalysis detect \
+skill-drilla detect \
   --view-dir artifacts/chat-analysis/views/user_nl_root_only \
   --detector repeated_instructions \
   --output-dir artifacts/chat-analysis/detectors/repeated_instructions
 
-chatanalysis extract-episodes \
+skill-drilla extract-episodes \
   --evidence artifacts/chat-analysis/normalize/evidence.jsonl \
   --output-dir artifacts/chat-analysis/episodes
 
-chatanalysis report \
+skill-drilla report \
   --detector-run artifacts/chat-analysis/detectors/repeated_instructions/detector_run.json \
   --output-dir artifacts/chat-analysis/reports
 
-chatanalysis semantic-run --method skill-mining \
+skill-drilla semantic-run --method skill-mining \
   --episode-dir artifacts/chat-analysis/episodes/default \
   --disabled-by-default-check \
   --output-dir artifacts/chat-analysis/semantic/skill-mining
@@ -142,10 +142,10 @@ The real value is in the analysis notebook at `notebooks/06_skill_mining_analysi
 
 | Variable | Default | Purpose |
 |---|---|---|
-| `CHATANALYSIS_LLM_BASE_URL` | `https://api.openai.com/v1` | OpenAI-compatible endpoint for skill mining |
-| `CHATANALYSIS_LLM_API_KEY` | (empty) | API key for the LLM endpoint |
-| `CHATANALYSIS_LLM_MODEL` | `gpt-4o-mini` | Model name for skill mining |
-| `CHATANALYSIS_EMBEDDING_MODEL` | `all-MiniLM-L6-v2` | Sentence-transformer model for clustering |
+| `SKILLDRILLA_LLM_BASE_URL` | `https://api.openai.com/v1` | OpenAI-compatible endpoint for skill mining |
+| `SKILLDRILLA_LLM_API_KEY` | (empty) | API key for the LLM endpoint |
+| `SKILLDRILLA_LLM_MODEL` | `gpt-4o-mini` | Model name for skill mining |
+| `SKILLDRILLA_EMBEDDING_MODEL` | `all-MiniLM-L6-v2` | Sentence-transformer model for clustering |
 
 Any OpenAI-compatible API works (OpenAI, Anthropic via proxy, local models via llama.cpp/vllm/etc).
 
@@ -206,8 +206,8 @@ pytest tests/
 ## Project structure
 
 ```
-chatanalysis/
-  src/chatanalysis/       # Core library (63 modules, zero core dependencies)
+skill-drilla/
+  src/skill_drilla/       # Core library (63 modules, zero core dependencies)
   tests/                  # Unit, integration, regression, performance tests
   schemas/                # JSON schema definitions for all artifact types
   configs/                # Default configuration
@@ -229,7 +229,7 @@ The expected structure is `projects/-project-name/session-uuid.jsonl`. Each `.js
 **"ModuleNotFoundError: sentence_transformers"**
 Install the optional clustering extras: `pip install -e '.[semantic-local]'`
 
-**"CHATANALYSIS_LLM_API_KEY not set" / empty API key**
+**"SKILLDRILLA_LLM_API_KEY not set" / empty API key**
 Copy `.env.example` to `.env` and add your API key. Only needed for `semantic-run --method skill-mining --backend pydantic-ai`.
 
 **Integration tests fail**

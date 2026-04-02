@@ -1,9 +1,9 @@
 import json
 from pathlib import Path
 
-from chatanalysis.cli import load_inventory_records, load_raw_events
-from chatanalysis.normalize import normalize_event, write_normalize_artifacts
-from chatanalysis.normalize.model import build_raw_event_id
+from skill_drilla.cli import load_inventory_records, load_raw_events
+from skill_drilla.normalize import normalize_event, write_normalize_artifacts
+from skill_drilla.normalize.model import build_raw_event_id
 
 
 FIXTURE_DIR = Path("tests/fixtures/normalize")

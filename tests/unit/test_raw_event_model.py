@@ -1,8 +1,8 @@
 import json
 from pathlib import Path
 
-from chatanalysis.cli import load_inventory_records
-from chatanalysis.parse import iter_raw_events, summarize_file_parse
+from skill_drilla.cli import load_inventory_records
+from skill_drilla.parse import iter_raw_events, summarize_file_parse
 
 
 REPO_ROOT = Path(__file__).resolve().parents[2]

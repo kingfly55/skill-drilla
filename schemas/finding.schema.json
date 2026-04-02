@@ -1,6 +1,6 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "https://example.local/chatanalysis/schemas/finding.schema.json",
+  "$id": "https://example.local/skill-drilla/schemas/finding.schema.json",
   "title": "ChatAnalysisFinding",
   "type": "object",
   "additionalProperties": false,

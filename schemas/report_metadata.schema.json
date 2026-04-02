@@ -1,6 +1,6 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "https://example.local/chatanalysis/schemas/report_metadata.schema.json",
+  "$id": "https://example.local/skill-drilla/schemas/report_metadata.schema.json",
   "title": "ChatAnalysisReportMetadata",
   "type": "object",
   "additionalProperties": false,

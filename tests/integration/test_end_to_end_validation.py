@@ -1,7 +1,7 @@
 import json
 from pathlib import Path
 
-from chatanalysis.validate import run_validation
+from skill_drilla.validate import run_validation
 
 
 CONFIG = Path(__file__).resolve().parents[2] / "configs/chat-analysis.default.yaml"

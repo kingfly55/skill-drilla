@@ -4,7 +4,7 @@ import subprocess
 import sys
 from pathlib import Path
 
-from chatanalysis.notebooks import export_notebook_artifacts
+from skill_drilla.notebooks import export_notebook_artifacts
 
 
 REPO_ROOT = Path(__file__).resolve().parents[2]
@@ -32,7 +32,7 @@ def test_notebook_export_cli_writes_expected_manifest(tmp_path: Path):
         [
             sys.executable,
             "-m",
-            "chatanalysis.cli",
+            "skill_drilla.cli",
             "notebook-export",
             "--evidence",
             str(EVIDENCE),

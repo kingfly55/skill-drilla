@@ -1,7 +1,7 @@
 import json
 from pathlib import Path
 
-from chatanalysis.search import SearchFilters, inspect_evidence, parse_query, run_search, write_search_result
+from skill_drilla.search import SearchFilters, inspect_evidence, parse_query, run_search, write_search_result
 
 
 FIXTURE_VIEW_DIR = Path(__file__).resolve().parents[2] / "artifacts/chat-analysis/views/debug_included_and_excluded"

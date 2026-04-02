@@ -1,6 +1,6 @@
 from pathlib import Path
 
-from chatanalysis.seed import collect_direct_hits
+from skill_drilla.seed import collect_direct_hits
 
 
 FIXTURE_VIEW_DIR = Path(__file__).resolve().parents[2] / "artifacts/chat-analysis/views/debug_included_and_excluded"

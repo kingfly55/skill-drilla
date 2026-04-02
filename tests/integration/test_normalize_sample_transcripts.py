@@ -19,7 +19,7 @@ def test_normalize_fixture_outputs_are_deterministic(tmp_path: Path):
     command = [
         sys.executable,
         "-m",
-        "chatanalysis.cli",
+        "skill_drilla.cli",
         "normalize",
         "--inventory",
         str(INVENTORY_FIXTURE),
@@ -46,7 +46,7 @@ def test_normalize_fixture_surfaces_ambiguous_and_subagent_context(tmp_path: Pat
         [
             sys.executable,
             "-m",
-            "chatanalysis.cli",
+            "skill_drilla.cli",
             "normalize",
             "--inventory",
             str(INVENTORY_FIXTURE),
@@ -77,7 +77,7 @@ def test_normalize_smoke_artifacts_have_expected_contract(tmp_path: Path):
         [
             sys.executable,
             "-m",
-            "chatanalysis.cli",
+            "skill_drilla.cli",
             "normalize",
             "--inventory",
             str(SMOKE_INVENTORY),

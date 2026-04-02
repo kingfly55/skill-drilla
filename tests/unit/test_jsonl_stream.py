@@ -1,6 +1,6 @@
 from pathlib import Path
 
-from chatanalysis.parse.jsonl_stream import stream_jsonl_records
+from skill_drilla.parse.jsonl_stream import stream_jsonl_records
 
 
 FIXTURE = Path("tests/fixtures/parse/sample_session.jsonl")

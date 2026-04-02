@@ -1,6 +1,6 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "https://example.local/chatanalysis/schemas/raw_event.schema.json",
+  "$id": "https://example.local/skill-drilla/schemas/raw_event.schema.json",
   "title": "ChatAnalysisRawEvent",
   "type": "object",
   "additionalProperties": false,

@@ -16,7 +16,7 @@ def test_parse_outputs_are_deterministic(tmp_path: Path):
     command = [
         sys.executable,
         "-m",
-        "chatanalysis.cli",
+        "skill_drilla.cli",
         "parse",
         "--inventory",
         str(INVENTORY_PATH),
@@ -69,7 +69,7 @@ def test_parse_diagnostics_surface_invalid_and_unknown_records(tmp_path: Path):
         [
             sys.executable,
             "-m",
-            "chatanalysis.cli",
+            "skill_drilla.cli",
             "parse",
             "--inventory",
             str(fixture_inventory),

@@ -17,7 +17,7 @@ def test_discover_outputs_are_stable(tmp_path: Path):
     command = [
         sys.executable,
         "-m",
-        "chatanalysis.cli",
+        "skill_drilla.cli",
         "discover",
         "--config",
         str(CONFIG_PATH),

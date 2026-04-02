@@ -17,7 +17,7 @@ def test_seed_expand_cli_writes_seed_run(tmp_path: Path):
         [
             sys.executable,
             "-m",
-            "chatanalysis.cli",
+            "skill_drilla.cli",
             "seed-expand",
             "--view-dir",
             str(VIEW_DIR),

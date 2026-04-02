@@ -5,7 +5,7 @@
 Run the full local validation workflow with:
 
 ```bash
-PYTHONPATH="src" python -m chatanalysis.cli validate \
+PYTHONPATH="src" python -m skill-drilla.cli validate \
   --config "configs/chat-analysis.default.yaml" \
   --projects-root "projects" \
   --output-dir "artifacts/chat-analysis/validation/full-smoke"

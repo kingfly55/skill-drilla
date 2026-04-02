@@ -3,7 +3,7 @@
 import json
 from pathlib import Path
 
-from chatanalysis.cli import STABLE_PIPELINE_COMMANDS, main
+from skill_drilla.cli import STABLE_PIPELINE_COMMANDS, main
 
 FIXTURE_EVIDENCE = Path("tests/fixtures/normalize/sample_evidence.jsonl")
 

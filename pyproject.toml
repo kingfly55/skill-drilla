@@ -3,7 +3,7 @@ requires = ["setuptools>=68"]
 build-backend = "setuptools.build_meta"
 
 [project]
-name = "chatanalysis"
+name = "skill-drilla"
 version = "0.1.0"
 description = "Analyze Claude Code chat transcripts to surface recurring patterns, extract episode workflows, and mine reusable skills"
 readme = "README.md"
@@ -27,11 +27,11 @@ skill-mining = [
   "pydantic-ai>=1.0",
 ]
 all = [
-  "chatanalysis[semantic-local,skill-mining]",
+  "skill-drilla[semantic-local,skill-mining]",
 ]
 
 [project.scripts]
-chatanalysis = "chatanalysis.cli:main"
+skill-drilla = "skill_drilla.cli:main"
 
 [tool.setuptools]
 package-dir = {"" = "src"}

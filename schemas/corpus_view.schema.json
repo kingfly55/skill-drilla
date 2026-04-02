@@ -1,6 +1,6 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "https://example.local/chatanalysis/schemas/corpus_view.schema.json",
+  "$id": "https://example.local/skill-drilla/schemas/corpus_view.schema.json",
   "title": "ChatAnalysisCorpusViewRow",
   "type": "object",
   "additionalProperties": false,

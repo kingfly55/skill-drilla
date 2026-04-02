@@ -1,7 +1,7 @@
 from pathlib import Path
 
-from chatanalysis.cli import STABLE_PIPELINE_COMMANDS, build_parser, main
-from chatanalysis.validate import run_validation
+from skill_drilla.cli import STABLE_PIPELINE_COMMANDS, build_parser, main
+from skill_drilla.validate import run_validation
 
 
 EXPECTED_COMMANDS = [

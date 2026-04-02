@@ -13,7 +13,7 @@ Semantic analysis is an optional, explicitly non-canonical extension layer.
 ## CLI usage
 ```bash
 PYTHONPATH="src" \
-python -m chatanalysis.cli semantic-run \
+python -m skill-drilla.cli semantic-run \
   --view-dir "artifacts/chat-analysis/views/user_nl_root_only" \
   --method clustering \
   --disabled-by-default-check \
@@ -42,7 +42,7 @@ Example:
 ```bash
 HSA_OVERRIDE_GFX_VERSION=10.3.0 \
 PYTHONPATH="src" \
-python -m chatanalysis.cli semantic-run \
+python -m skill-drilla.cli semantic-run \
   --view-dir "artifacts/chat-analysis/views/user_nl_root_only" \
   --method embeddings \
   --backend stella-local \
@@ -62,7 +62,7 @@ Stella-backed clustering uses the same local model stack and adds an agglomerati
 ```bash
 HSA_OVERRIDE_GFX_VERSION=10.3.0 \
 PYTHONPATH="src" \
-python -m chatanalysis.cli semantic-run \
+python -m skill-drilla.cli semantic-run \
   --view-dir "artifacts/chat-analysis/views/user_nl_root_only" \
   --method clustering \
   --backend stella-local \

@@ -1,8 +1,8 @@
 import json
 from pathlib import Path
 
-from chatanalysis.discovery.inventory import DiscoverySummary, discover_corpus, inventory_jsonl_lines
-from chatanalysis.discovery.scoping import apply_scope
+from skill_drilla.discovery.inventory import DiscoverySummary, discover_corpus, inventory_jsonl_lines
+from skill_drilla.discovery.scoping import apply_scope
 
 
 FIXTURE_ROOT = Path("tests/fixtures/discovery")

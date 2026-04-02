@@ -1,6 +1,6 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "https://example.local/chatanalysis/schemas/normalization_diagnostics.schema.json",
+  "$id": "https://example.local/skill-drilla/schemas/normalization_diagnostics.schema.json",
   "title": "ChatAnalysisNormalizationDiagnostics",
   "type": "object",
   "additionalProperties": false,

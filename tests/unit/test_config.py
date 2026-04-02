@@ -1,7 +1,7 @@
 import json
 from pathlib import Path
 
-from chatanalysis.config import dump_effective_config, load_config
+from skill_drilla.config import dump_effective_config, load_config
 
 
 def test_load_config_normalizes_expected_defaults():

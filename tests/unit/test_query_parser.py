@@ -1,4 +1,4 @@
-from chatanalysis.search.query import QuerySyntaxError, parse_csv_filters, parse_query
+from skill_drilla.search.query import QuerySyntaxError, parse_csv_filters, parse_query
 
 
 def test_parse_query_supports_single_keyword():

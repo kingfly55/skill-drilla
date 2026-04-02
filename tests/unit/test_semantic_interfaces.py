@@ -3,7 +3,7 @@ from pathlib import Path
 from types import SimpleNamespace
 from unittest.mock import patch
 
-from chatanalysis.semantic import SEMANTIC_METHODS, SemanticEvidenceSlice, get_semantic_method, write_semantic_run
+from skill_drilla.semantic import SEMANTIC_METHODS, SemanticEvidenceSlice, get_semantic_method, write_semantic_run
 
 
 REPO_ROOT = Path(__file__).resolve().parents[2]
@@ -78,7 +78,7 @@ def test_stella_local_embedding_backend_preserves_evidence_ids():
     )
     fake_sentence_transformers = SimpleNamespace(SentenceTransformer=FakeModel)
 
-    with patch("chatanalysis.semantic.embeddings._load_stella_dependencies", return_value=(fake_torch, fake_sentence_transformers)):
+    with patch("skill_drilla.semantic.embeddings._load_stella_dependencies", return_value=(fake_torch, fake_sentence_transformers)):
         run = get_semantic_method("embeddings").build_run(
             evidence_slice,
             parameters={
@@ -107,7 +107,7 @@ def test_stella_local_embedding_backend_requires_optional_dependencies():
     evidence_slice = SemanticEvidenceSlice.from_view_dir(VIEW_DIR)
 
     with patch(
-        "chatanalysis.semantic.embeddings._load_stella_dependencies",
+        "skill_drilla.semantic.embeddings._load_stella_dependencies",
         side_effect=ImportError("stella-local backend requires optional dependencies"),
     ):
         try:
@@ -156,7 +156,7 @@ def test_stella_local_clustering_backend_groups_evidence():
     fake_sklearn_cluster = SimpleNamespace(AgglomerativeClustering=FakeAgglomerativeClustering)
 
     with patch(
-        "chatanalysis.semantic.clustering._load_stella_clustering_dependencies",
+        "skill_drilla.semantic.clustering._load_stella_clustering_dependencies",
         return_value=(fake_torch, fake_sentence_transformers, fake_sklearn_cluster),
     ):
         run = get_semantic_method("clustering").build_run(
@@ -188,7 +188,7 @@ def test_stella_local_clustering_backend_requires_optional_dependencies():
     evidence_slice = SemanticEvidenceSlice.from_view_dir(VIEW_DIR)
 
     with patch(
-        "chatanalysis.semantic.clustering._load_stella_clustering_dependencies",
+        "skill_drilla.semantic.clustering._load_stella_clustering_dependencies",
         side_effect=ImportError("stella-local clustering requires optional dependencies"),
     ):
         try:

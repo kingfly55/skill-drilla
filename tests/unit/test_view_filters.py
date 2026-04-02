@@ -1,4 +1,4 @@
-from chatanalysis.views import STANDARD_VIEW_DEFINITIONS, ViewFilterPolicy, apply_view_policy, build_inspection_record
+from skill_drilla.views import STANDARD_VIEW_DEFINITIONS, ViewFilterPolicy, apply_view_policy, build_inspection_record
 
 
 def make_record(**overrides):

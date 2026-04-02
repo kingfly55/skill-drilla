@@ -1,6 +1,6 @@
 from pathlib import Path
 
-from chatanalysis.discovery.lineage import derive_lineage
+from skill_drilla.discovery.lineage import derive_lineage
 
 
 def test_derive_lineage_for_root_session():

@@ -1,4 +1,4 @@
-from chatanalysis.views import RECURRENCE_BASIS_DEFAULT, compute_recurrence_counts
+from skill_drilla.views import RECURRENCE_BASIS_DEFAULT, compute_recurrence_counts
 
 
 def test_recurrence_counts_use_explicit_metric_names():

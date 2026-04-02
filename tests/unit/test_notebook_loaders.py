@@ -1,7 +1,7 @@
 import json
 from pathlib import Path
 
-from chatanalysis.notebooks import (
+from skill_drilla.notebooks import (
     collect_evidence_by_status,
     load_corpus_view,
     load_detector_run,
@@ -142,7 +142,7 @@ def test_iterative_insight_notebook_references_canonical_validation_artifacts():
 
     assert notebook_path.exists()
     assert notebook["nbformat"] == 4
-    assert "chatanalysis.notebooks" in notebook_text
+    assert "skill_drilla.notebooks" in notebook_text
     assert "artifacts/chat-analysis/validation/full-smoke" in notebook_text
     assert "non-canonical" in notebook_text
     assert "semantic_run.json" in notebook_text

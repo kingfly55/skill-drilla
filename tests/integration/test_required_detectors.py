@@ -1,6 +1,6 @@
 from pathlib import Path
 
-from chatanalysis.detect import get_detector
+from skill_drilla.detect import get_detector
 
 
 VIEW_DIR = Path(__file__).resolve().parents[2] / "artifacts/chat-analysis/views/user_nl_root_only"

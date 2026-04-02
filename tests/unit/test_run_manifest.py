@@ -1,7 +1,7 @@
 import json
 from pathlib import Path
 
-from chatanalysis.contracts.run_manifest import (
+from skill_drilla.contracts.run_manifest import (
     REQUIRED_MANIFEST_FIELDS,
     finalize_run,
     start_run,

@@ -1,6 +1,6 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "https://example.local/chatanalysis/schemas/session_inventory.schema.json",
+  "$id": "https://example.local/skill-drilla/schemas/session_inventory.schema.json",
   "title": "ChatAnalysisSessionInventoryRecord",
   "type": "object",
   "additionalProperties": false,

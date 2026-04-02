@@ -3,7 +3,7 @@
 import json
 from pathlib import Path
 
-from chatanalysis.episodes.loader import iter_evidence_rows
+from skill_drilla.episodes.loader import iter_evidence_rows
 
 
 def test_iter_evidence_rows_yields_dicts(tmp_path: Path):

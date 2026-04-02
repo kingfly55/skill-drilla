@@ -1,4 +1,4 @@
-from chatanalysis.report import rank_findings, score_finding
+from skill_drilla.report import rank_findings, score_finding
 
 
 def _finding(*, finding_id: str, title: str, raw: int, sessions: int, projects: int, evidence: int):

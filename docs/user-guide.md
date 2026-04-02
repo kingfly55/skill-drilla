@@ -1,8 +1,8 @@
-# ChatAnalysis user guide
+# Skill Drilla user guide
 
 ## What this tool does
 
-ChatAnalysis is a local-first CLI for turning exported chat transcript corpora into structured analysis artifacts.
+Skill Drilla is a local-first CLI for turning exported chat transcript corpora into structured analysis artifacts.
 
 At a high level, the workflow is:
 
@@ -14,7 +14,7 @@ At a high level, the workflow is:
 6. optionally export notebook bundles or run semantic analysis
 7. run the end-to-end validation workflow
 
-The CLI entrypoint is `chatanalysis` and is defined in `src/chatanalysis/cli.py:40`.
+The CLI entrypoint is `skill-drilla` and is defined in `src/skill_drilla/cli.py:40`.
 
 ## Requirements
 
@@ -35,13 +35,13 @@ python -m pip install -e .
 Then you can use either form:
 
 ```bash
-chatanalysis --help
+skill-drilla --help
 ```
 
 or:
 
 ```bash
-PYTHONPATH=src python -m chatanalysis.cli --help
+PYTHONPATH=src python -m skill-drilla.cli --help
 ```
 
 ## Configuration
@@ -60,7 +60,7 @@ Important fields:
 Show the effective normalized config:
 
 ```bash
-chatanalysis config show --config configs/chat-analysis.default.yaml
+skill-drilla config show --config configs/chat-analysis.default.yaml
 ```
 
 ## Expected input layout
@@ -73,7 +73,7 @@ A typical run points at:
 projects/
 ```
 
-Discovery walks that tree and writes inventory artifacts describing the discovered sessions. The canonical discovery outputs are written by `src/chatanalysis/discovery/writer.py:13`.
+Discovery walks that tree and writes inventory artifacts describing the discovered sessions. The canonical discovery outputs are written by `src/skill_drilla/discovery/writer.py:13`.
 
 ## Output layout
 
@@ -92,7 +92,7 @@ Common subdirectories used by the workflow include:
 - `artifacts/chat-analysis/notebooks/`
 - `artifacts/chat-analysis/validation/`
 
-The base artifact layout is defined in `src/chatanalysis/contracts/artifacts.py:9`.
+The base artifact layout is defined in `src/skill_drilla/contracts/artifacts.py:9`.
 
 ## Quickstart: end-to-end workflow
 
@@ -101,7 +101,7 @@ This is the simplest manual pipeline using the current stable commands.
 ### 1) Discover sessions
 
 ```bash
-chatanalysis discover \
+skill-drilla discover \
   --config configs/chat-analysis.default.yaml \
   --projects-root projects \
   --output-dir artifacts/chat-analysis/discovery/default
@@ -118,7 +118,7 @@ Main outputs:
 ### 2) Parse discovered sessions into raw events
 
 ```bash
-chatanalysis parse \
+skill-drilla parse \
   --inventory artifacts/chat-analysis/discovery/default/scoped_session_inventory.jsonl \
   --output-dir artifacts/chat-analysis/parse/default
 ```
@@ -131,7 +131,7 @@ Main outputs:
 ### 3) Normalize raw events into evidence
 
 ```bash
-chatanalysis normalize \
+skill-drilla normalize \
   --inventory artifacts/chat-analysis/discovery/default/scoped_session_inventory.jsonl \
   --raw-events artifacts/chat-analysis/parse/default/raw_events.jsonl \
   --output-dir artifacts/chat-analysis/normalize/default
@@ -155,12 +155,12 @@ Choose a built-in view name, for example:
 - `root_only_all_roles`
 - `root_plus_subagent_all_roles`
 
-These are defined in `src/chatanalysis/views/definitions.py:41`.
+These are defined in `src/skill_drilla/views/definitions.py:41`.
 
 Example:
 
 ```bash
-chatanalysis build-view \
+skill-drilla build-view \
   --evidence artifacts/chat-analysis/normalize/default/evidence.jsonl \
   --view root_plus_subagent_all_roles \
   --output-dir artifacts/chat-analysis/views/root_plus_subagent_all_roles
@@ -174,7 +174,7 @@ Main outputs:
 ### 5) Search a view
 
 ```bash
-chatanalysis search \
+skill-drilla search \
   --view-dir artifacts/chat-analysis/views/root_plus_subagent_all_roles \
   --query "repeated instructions" \
   --output-dir artifacts/chat-analysis/search/repeated-instructions
@@ -191,7 +191,7 @@ Useful filters:
 ### 6) Inspect a specific evidence record
 
 ```bash
-chatanalysis inspect-evidence \
+skill-drilla inspect-evidence \
   --view-dir artifacts/chat-analysis/views/root_plus_subagent_all_roles \
   --evidence-id <evidence-id>
 ```
@@ -201,14 +201,14 @@ This prints a JSON inspection payload for one record plus nearby context.
 ### 7) Expand from a seed term
 
 ```bash
-chatanalysis seed-expand \
+skill-drilla seed-expand \
   --view-dir artifacts/chat-analysis/views/root_plus_subagent_all_roles \
   --term "retry" \
   --strategy session_neighborhood \
   --output-dir artifacts/chat-analysis/seed/retry
 ```
 
-Supported strategies are declared in `src/chatanalysis/cli.py:96`:
+Supported strategies are declared in `src/skill_drilla/cli.py:96`:
 
 - `cooccurrence`
 - `adjacency`
@@ -216,7 +216,7 @@ Supported strategies are declared in `src/chatanalysis/cli.py:96`:
 
 ### 8) Run a detector
 
-Available detector names are defined in `src/chatanalysis/detect/__init__.py:12`:
+Available detector names are defined in `src/skill_drilla/detect/__init__.py:12`:
 
 - `repeated_instructions`
 - `workflow_patterns`
@@ -229,7 +229,7 @@ Available detector names are defined in `src/chatanalysis/detect/__init__.py:12`
 Example:
 
 ```bash
-chatanalysis detect \
+skill-drilla detect \
   --view-dir artifacts/chat-analysis/views/root_plus_subagent_all_roles \
   --detector repeated_instructions \
   --output-dir artifacts/chat-analysis/detectors/repeated_instructions
@@ -242,7 +242,7 @@ Main output:
 ### 9) Generate a report
 
 ```bash
-chatanalysis report \
+skill-drilla report \
   --detector-run artifacts/chat-analysis/detectors/repeated_instructions/detector_run.json \
   --title "Repeated instructions report" \
   --output-dir artifacts/chat-analysis/reports/repeated_instructions
@@ -256,7 +256,7 @@ Main outputs:
 ### 10) Export notebook-friendly artifacts
 
 ```bash
-chatanalysis notebook-export \
+skill-drilla notebook-export \
   --evidence artifacts/chat-analysis/normalize/default/evidence.jsonl \
   --view-dir artifacts/chat-analysis/views/root_plus_subagent_all_roles \
   --detector-run artifacts/chat-analysis/detectors/repeated_instructions/detector_run.json \
@@ -272,7 +272,7 @@ For notebook-specific guidance, see `docs/notebooks/usage.md`.
 
 Semantic analysis is disabled by default and requires an explicit opt-in flag.
 
-Available methods are defined in `src/chatanalysis/semantic/__init__.py:8`:
+Available methods are defined in `src/skill_drilla/semantic/__init__.py:8`:
 
 - `embeddings`
 - `clustering`
@@ -286,7 +286,7 @@ The `embeddings` method now supports two modes:
 Fixture example:
 
 ```bash
-chatanalysis semantic-run \
+skill-drilla semantic-run \
   --view-dir artifacts/chat-analysis/views/root_plus_subagent_all_roles \
   --method embeddings \
   --backend fixture \
@@ -298,7 +298,7 @@ Stella local example:
 
 ```bash
 HSA_OVERRIDE_GFX_VERSION=10.3.0 \
-chatanalysis semantic-run \
+skill-drilla semantic-run \
   --view-dir artifacts/chat-analysis/views/root_plus_subagent_all_roles \
   --method embeddings \
   --backend stella-local \
@@ -314,7 +314,7 @@ chatanalysis semantic-run \
 Fixture clustering remains available as the deterministic semantic grouping mode:
 
 ```bash
-chatanalysis semantic-run \
+skill-drilla semantic-run \
   --view-dir artifacts/chat-analysis/views/root_plus_subagent_all_roles \
   --method clustering \
   --backend fixture \
@@ -326,7 +326,7 @@ Stella local clustering uses normalized Stella embeddings plus agglomerative clu
 
 ```bash
 HSA_OVERRIDE_GFX_VERSION=10.3.0 \
-chatanalysis semantic-run \
+skill-drilla semantic-run \
   --view-dir artifacts/chat-analysis/views/root_plus_subagent_all_roles \
   --method clustering \
   --backend stella-local \
@@ -352,7 +352,7 @@ See also `docs/semantic/optional-mode.md`.
 If you want a single end-to-end smoke test of the whole system:
 
 ```bash
-chatanalysis validate \
+skill-drilla validate \
   --config configs/chat-analysis.default.yaml \
   --projects-root projects \
   --output-dir artifacts/chat-analysis/validation/full-smoke
@@ -369,7 +369,7 @@ For more detail, see `docs/operators/validation-and-troubleshooting.md`.
 Print the normalized effective config as JSON.
 
 ```bash
-chatanalysis config show --config configs/chat-analysis.default.yaml
+skill-drilla config show --config configs/chat-analysis.default.yaml
 ```
 
 ### `manifest-smoke`
@@ -377,7 +377,7 @@ chatanalysis config show --config configs/chat-analysis.default.yaml
 Write a minimal run manifest and effective config to an output directory.
 
 ```bash
-chatanalysis manifest-smoke \
+skill-drilla manifest-smoke \
   --config configs/chat-analysis.default.yaml \
   --output-dir artifacts/chat-analysis/contracts/manifest-smoke
 ```
@@ -519,7 +519,7 @@ Requires:
 If you are just trying the tool for the first time, run:
 
 ```bash
-chatanalysis validate \
+skill-drilla validate \
   --config configs/chat-analysis.default.yaml \
   --projects-root projects \
   --output-dir artifacts/chat-analysis/validation/first-run
@@ -566,11 +566,11 @@ Make sure the raw events file came from the matching parse run.
 
 ### `unknown view definition`
 
-Use one of the built-in view names from `src/chatanalysis/views/definitions.py:41`.
+Use one of the built-in view names from `src/skill_drilla/views/definitions.py:41`.
 
 ### `unknown detector`
 
-Use one of the detector names from `src/chatanalysis/detect/__init__.py:12`.
+Use one of the detector names from `src/skill_drilla/detect/__init__.py:12`.
 
 ### `semantic-run is disabled by default`
 
@@ -582,9 +582,9 @@ See `docs/operators/validation-and-troubleshooting.md` for stage-specific troubl
 
 ## Where to go next
 
-- CLI surface: `src/chatanalysis/cli.py:40`
-- view definitions: `src/chatanalysis/views/definitions.py:41`
-- detector registry: `src/chatanalysis/detect/__init__.py:12`
+- CLI surface: `src/skill_drilla/cli.py:40`
+- view definitions: `src/skill_drilla/views/definitions.py:41`
+- detector registry: `src/skill_drilla/detect/__init__.py:12`
 - notebook workflow: `docs/notebooks/usage.md`
 - semantic mode: `docs/semantic/optional-mode.md`
 - validation workflow: `docs/operators/validation-and-troubleshooting.md`

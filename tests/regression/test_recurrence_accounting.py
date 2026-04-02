@@ -1,5 +1,5 @@
-from chatanalysis.notebooks.loaders import recurrence_snapshot
-from chatanalysis.views import compute_recurrence_counts
+from skill_drilla.notebooks.loaders import recurrence_snapshot
+from skill_drilla.views import compute_recurrence_counts
 
 
 def test_multi_evidence_same_raw_event_does_not_inflate_distinct_evidence():

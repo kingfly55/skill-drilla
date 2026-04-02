@@ -17,7 +17,7 @@ def test_search_cli_writes_reproducible_query_result(tmp_path: Path):
         [
             sys.executable,
             "-m",
-            "chatanalysis.cli",
+            "skill_drilla.cli",
             "search",
             "--view-dir",
             str(VIEW_DIR),
@@ -50,7 +50,7 @@ def test_inspect_evidence_cli_prints_context(tmp_path: Path):
         [
             sys.executable,
             "-m",
-            "chatanalysis.cli",
+            "skill_drilla.cli",
             "search",
             "--view-dir",
             str(VIEW_DIR),
@@ -70,7 +70,7 @@ def test_inspect_evidence_cli_prints_context(tmp_path: Path):
         [
             sys.executable,
             "-m",
-            "chatanalysis.cli",
+            "skill_drilla.cli",
             "inspect-evidence",
             "--view-dir",
             str(VIEW_DIR),

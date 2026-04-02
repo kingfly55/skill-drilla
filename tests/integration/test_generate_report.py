@@ -1,7 +1,7 @@
 import json
 from pathlib import Path
 
-from chatanalysis.report import generate_report
+from skill_drilla.report import generate_report
 
 
 REPEATED_RUN = Path(__file__).resolve().parents[2] / "artifacts/chat-analysis/detectors/repeated_instructions/detector_run.json"

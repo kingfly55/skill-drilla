@@ -5,8 +5,8 @@ from __future__ import annotations
 import json
 from pathlib import Path
 
-from chatanalysis.semantic import SEMANTIC_METHODS, get_semantic_method
-from chatanalysis.semantic.skill_mining import (
+from skill_drilla.semantic import SEMANTIC_METHODS, get_semantic_method
+from skill_drilla.semantic.skill_mining import (
     SkillMiningMethod,
     _collect_user_turns,
     _derive_fixture,
@@ -294,7 +294,7 @@ def test_pydantic_ai_backend_raises_import_error_when_not_available():
     # Temporarily hide pydantic_ai from imports
     saved = sys.modules.pop("pydantic_ai", None)
     try:
-        from chatanalysis.semantic.skill_mining import _load_pydantic_ai_dependencies
+        from skill_drilla.semantic.skill_mining import _load_pydantic_ai_dependencies
         try:
             _load_pydantic_ai_dependencies()
         except ImportError as exc:

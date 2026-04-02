@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# run-analysis.sh — one command to run the full ChatAnalysis pipeline
+# run-analysis.sh — one command to run the full Skill Drilla pipeline
 #
 # Usage:
 #   ./run-analysis.sh                    # uses default transcript location
@@ -29,8 +29,8 @@ if [ "$PY_MAJOR" -lt 3 ] || { [ "$PY_MAJOR" -eq 3 ] && [ "$PY_MINOR" -lt 11 ]; }
     exit 1
 fi
 
-if ! command -v chatanalysis &> /dev/null; then
-    echo "Error: chatanalysis CLI not found."
+if ! command -v skill-drilla &> /dev/null; then
+    echo "Error: skill-drilla CLI not found."
     echo ""
     echo "Install it with:"
     echo "  pip install -e ."
@@ -43,7 +43,7 @@ fi
 CONFIG="configs/chat-analysis.default.yaml"
 if [ ! -f "$CONFIG" ]; then
     echo "Error: Config not found at $CONFIG"
-    echo "Make sure you're running from the chatanalysis repo root."
+    echo "Make sure you're running from the skill-drilla repo root."
     exit 1
 fi
 
@@ -87,7 +87,7 @@ fi
 # ── Optional dependency check ──
 echo ""
 echo "╔══════════════════════════════════════════════════════════════╗"
-echo "║  ChatAnalysis Pipeline                                      ║"
+echo "║  Skill Drilla Pipeline                                      ║"
 echo "╚══════════════════════════════════════════════════════════════╝"
 echo ""
 echo "  Source:   $CLAUDE_PROJECTS"
@@ -127,7 +127,7 @@ fi
 
 # Stage 1: Discover
 echo "▸ [1/7] Discovering projects and sessions..."
-chatanalysis discover \
+skill-drilla discover \
     --config "$CONFIG" \
     --projects-root projects \
     --output-dir "$ARTIFACT_ROOT/discovery/run" \
@@ -137,7 +137,7 @@ echo "  ✓ Found $(wc -l < "$INVENTORY") sessions"
 
 # Stage 2: Parse
 echo "▸ [2/7] Parsing raw events from transcripts..."
-chatanalysis parse \
+skill-drilla parse \
     --inventory "$INVENTORY" \
     --output-dir "$ARTIFACT_ROOT/parse/run" \
     > /dev/null
@@ -145,7 +145,7 @@ echo "  ✓ Raw events written"
 
 # Stage 3: Normalize
 echo "▸ [3/7] Normalizing into canonical evidence..."
-chatanalysis normalize \
+skill-drilla normalize \
     --inventory "$INVENTORY" \
     --raw-events "$ARTIFACT_ROOT/parse/run/raw_events.jsonl" \
     --output-dir "$ARTIFACT_ROOT/normalize/run" \
@@ -157,7 +157,7 @@ echo "  ✓ $EVIDENCE_COUNT evidence records"
 # Stage 4: Build views
 echo "▸ [4/7] Building corpus views..."
 for VIEW_NAME in user_nl_root_only root_only_all_roles; do
-    chatanalysis build-view \
+    skill-drilla build-view \
         --evidence "$EVIDENCE" \
         --view "$VIEW_NAME" \
         --output-dir "$ARTIFACT_ROOT/views/$VIEW_NAME" \
@@ -172,7 +172,7 @@ echo "▸ [5/7] Running pattern detectors..."
 DETECTOR_OK=0
 DETECTOR_FAIL=0
 for DETECTOR in repeated_instructions change_requests refinement_requests workflow_patterns; do
-    if chatanalysis detect \
+    if skill-drilla detect \
         --view-dir "$VIEW_DIR" \
         --detector "$DETECTOR" \
         --output-dir "$ARTIFACT_ROOT/detectors/$DETECTOR" \
@@ -190,7 +190,7 @@ fi
 
 # Stage 6: Extract episodes
 echo "▸ [6/7] Extracting conversation episodes..."
-chatanalysis extract-episodes \
+skill-drilla extract-episodes \
     --evidence "$EVIDENCE" \
     --output-dir "$ARTIFACT_ROOT/episodes" \
     > /dev/null
@@ -202,7 +202,7 @@ echo "  ✓ $EP_COUNT episodes, $TURN_COUNT turns"
 # Stage 7: Generate report
 echo "▸ [7/7] Generating analysis report..."
 if [ -f "$ARTIFACT_ROOT/detectors/repeated_instructions/detector_run.json" ]; then
-    chatanalysis report \
+    skill-drilla report \
         --detector-run "$ARTIFACT_ROOT/detectors/repeated_instructions/detector_run.json" \
         --output-dir "$ARTIFACT_ROOT/reports/summary" \
         > /dev/null
@@ -239,7 +239,7 @@ fi
 echo ""
 if [ "$HAS_SKILL_MINING" = true ]; then
     echo "  3. Run LLM-backed skill mining:"
-    echo "     chatanalysis semantic-run --method skill-mining \\"
+    echo "     skill-drilla semantic-run --method skill-mining \\"
     echo "       --episode-dir $EP_DIR \\"
     echo "       --disabled-by-default-check \\"
     echo "       --output-dir $ARTIFACT_ROOT/semantic/skill-mining"

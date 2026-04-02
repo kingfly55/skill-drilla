@@ -1,8 +1,8 @@
 from pathlib import Path
 
-from chatanalysis.cli import load_inventory_records, load_raw_events
-from chatanalysis.normalize import normalize_event
-from chatanalysis.normalize.classifier import classify_raw_event
+from skill_drilla.cli import load_inventory_records, load_raw_events
+from skill_drilla.normalize import normalize_event
+from skill_drilla.normalize.classifier import classify_raw_event
 
 
 FIXTURE_DIR = Path("tests/fixtures/normalize")

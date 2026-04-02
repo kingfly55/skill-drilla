@@ -1,6 +1,6 @@
 """Unit tests for episode data models."""
 
-from chatanalysis.episodes.model import Episode, EpisodeIndex, EpisodeTurn, ToolContext
+from skill_drilla.episodes.model import Episode, EpisodeIndex, EpisodeTurn, ToolContext
 
 
 def _make_tool_context(**overrides) -> ToolContext:

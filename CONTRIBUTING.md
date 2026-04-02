@@ -3,8 +3,8 @@
 ## Setup
 
 ```bash
-git clone https://github.com/kingfly55/chatanalysis.git
-cd chatanalysis
+git clone https://github.com/kingfly55/skill-drilla.git
+cd skill-drilla
 pip install -e '.[all]'
 ```
 
@@ -38,7 +38,7 @@ Follow the existing codebase. Key conventions:
 
 ## Adding a detector
 
-1. Create `src/chatanalysis/detect/your_detector.py`
+1. Create `src/skill_drilla/detect/your_detector.py`
 2. Subclass `BaseDetector` (see `detect/base.py`)
 3. Implement `iter_candidates(rows, settings)` — yield `FindingCandidate` objects
 4. Register in `detect/__init__.py` under `DETECTOR_REGISTRY`
@@ -47,13 +47,13 @@ Follow the existing codebase. Key conventions:
 
 ## Adding a view
 
-1. Add definition in `src/chatanalysis/views/definitions.py`
+1. Add definition in `src/skill_drilla/views/definitions.py`
 2. Register in `VIEW_DEFINITIONS`
-3. Available immediately via `chatanalysis build-view --view your_name`
+3. Available immediately via `skill-drilla build-view --view your_name`
 
 ## Adding a semantic method
 
-1. Create `src/chatanalysis/semantic/your_method.py`
+1. Create `src/skill_drilla/semantic/your_method.py`
 2. Subclass `SemanticMethod` (see `semantic/base.py`)
 3. Implement `derive(evidence_slice, parameters)`
 4. Register in `semantic/__init__.py` under `SEMANTIC_METHODS`

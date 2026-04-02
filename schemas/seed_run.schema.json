@@ -1,6 +1,6 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "https://example.local/chatanalysis/schemas/seed_run.schema.json",
+  "$id": "https://example.local/skill-drilla/schemas/seed_run.schema.json",
   "title": "ChatAnalysisSeedRun",
   "type": "object",
   "additionalProperties": false,

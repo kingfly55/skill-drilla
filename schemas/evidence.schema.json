@@ -1,6 +1,6 @@
 {
   "$schema": "https://json-schema.org/draft/2020-12/schema",
-  "$id": "https://example.local/chatanalysis/schemas/evidence.schema.json",
+  "$id": "https://example.local/skill-drilla/schemas/evidence.schema.json",
   "title": "ChatAnalysisEvidenceRecord",
   "type": "object",
   "additionalProperties": false,

@@ -1,6 +1,6 @@
 """Unit tests for deterministic episode builder."""
 
-from chatanalysis.episodes.builder import (
+from skill_drilla.episodes.builder import (
     _collapse_raw_event,
     _group_by_root_session,
     build_episodes,
