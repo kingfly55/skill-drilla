@@ -18,7 +18,7 @@ ChatAnalysis turns exported Claude Code history into structured, traceable analy
 ## Quick start
 
 ```bash
-git clone https://github.com/GunnarGriworworktrees/chatanalysis.git
+git clone https://github.com/kingfly55/chatanalysis.git
 cd chatanalysis
 pip install -e '.[all]'    # or just: pip install -e .  (zero-dependency base)
 ./run-analysis.sh           # auto-detects ~/.claude/projects/ and runs everything
